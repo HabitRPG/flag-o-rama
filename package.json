@@ -1,0 +1,22 @@
+{
+  "name": "flag-o-rama",
+  "private": true,
+  "version": "0.0.1",
+  "description": "A site to make flagging messages easier.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "watchify src/index.js -o bundle.js"
+  },
+  "author": "Blade Barringer <blade@crookedneighbor.com> (http://crookedneighbor.com/)",
+  "license": "MIT",
+  "devDependencies": {
+    "browserify": "^13.1.0",
+    "watchify": "^3.7.0"
+  },
+  "dependencies": {
+    "habitica": "^3.0.0",
+    "habitica-markdown": "^1.2.2",
+    "uuid": "^2.0.2",
+    "validator": "^5.5.0"
+  }
+}

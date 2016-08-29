@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Flag-O-Rama</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.3/semantic.min.css" />
+    <style>
+      .ui.container {
+        margin-top: 50px;
+      }
+
+      #login, #flag-form, #flagged-message {
+        max-width: 600px;
+        margin: auto;
+      }
+
+      #logout-button {
+        position: fixed;
+        top: 25px;
+        right: 25px;
+      }
+
+      #submit-flag-container {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ui container">
+      <button id="logout-button" class="ui button">Log Out</button>
+      <h2 class="ui center aligned icon header">
+        <i class="flag red icon"></i>
+        Flag-O-Rama
+      </h2>
+      <div id='login' class='ui form segment transition hidden'>
+        <h4>Please Login</h4>
+        <p>Enter your Habitica <a href="https://habitica.com/#/options/settings/api">user id and api token</a>. You will be logged in automatically.</p>
+        <div class="ui error message">
+          <div class="header">User Not Found</div>
+          <p>No user was found with those credentials. Please check them and try again.</p>
+        </div>
+        <div class="field">
+          <label>User Id</label>
+          <input type="text" id="uuid-field" name="uuid" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
+        </div>
+        <div class="field">
+          <label>API Token</label>
+          <input type="text" id="apiToken-field" name="apiToken" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
+        </div>
+      </div>
+
+      <div id="flag-form" class="ui form segment transition hidden">
+        <div class="ui error message">
+          <div class="header"></div>
+          <p class="content"></p>
+        </div>
+        <div class="ui warning message">
+          <div class="header">Message Unflagged</div>
+        </div>
+        <div class="field">
+          <label>Group Id</label>
+          <input type="text" id="groupId" name="uuid" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
+        </div>
+        <div class="field">
+          <label>Chat Id</label>
+          <input type="text" id="chatId" name="chatId" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
+        </div>
+        <div id="submit-flag-container" class="field">
+          <button id="submit-flag" class="ui labeled icon button massive red transition hidden">
+            <i class="ui left icon flag"></i>
+            Flag
+          </button>
+        </div>
+      </div>
+
+      <div id="flagged-message" class="ui card transition hidden">
+        <div class="content">
+          <div id="flagged-message-title" class="header">
+            You Flagged this Message:
+          </div>
+        </div>
+        <div class="content">
+          <div id="flagged-message-text"></div>
+          <div id="flagged-message-meta" class="meta"></div>
+        </div>
+        <div class="extra content">
+          <a href="/"><button class="ui button">Flag Another</button></a>
+          <button id="unflag-button" class="ui button">Unflag</button>
+        </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.3/semantic.min.js"></script>
+    <script src="bundle.js"></script>
+  </body>
+</html>
