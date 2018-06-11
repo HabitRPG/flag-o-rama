@@ -9,13 +9,19 @@ var displayFlaggedMessage = require('./display-flagged-message')
 var $flagForm = $('#flag-form')
 var $groupId = $('#groupId')
 var $chatId = $('#chatId')
+var $userId = $('#userId')
+var $chatMessageId = $('#chatMessageId')
 var $submit = $('#submit-flag')
+
+var $allFields = [$groupId, $chatId, $userId, $chatMessageId];
 
 $groupId.val(params.groupId)
 $chatId.val(params.chatId)
+$userId.val(params.userId)
+$chatMessageId.val(params.chatMessageId)
 
-$groupId.on('input', onInput)
-$chatId.on('input', onInput)
+$allFields.map(($el) => $el.on('input', onInput));
+
 $submit.on('click', function () {
   attemptToFlagMessage().then(function (res) {
     var flaggedMessage = res.data
@@ -53,7 +59,8 @@ $('#unflag-button').click(function () {
 })
 
 function hasIds () {
-  return isUUID($groupId.val()) && isUUID($chatId.val())
+  return (isUUID($groupId.val()) && isUUID($chatId.val()))
+  || (isUUID($userId.val()) && isUUID($chatMessageId.val()))
 }
 
 function hideFormAndDisplayMessage (res) {
@@ -76,7 +83,9 @@ function openFlagFormWithError (err) {
 }
 
 function attemptToFlagMessage () {
-  return habitica._connection.post('/groups/' + $groupId.val() + '/chat/' + $chatId.val() + '/flag')
+  return $userId.val() 
+    ? habitica._connection.post(`/members/flag-private-message/${$chatMessageId.val()}?userId=${$userId.val()}`)
+    : habitica._connection.post(`/groups/${$groupId.val()}/chat/${$chatId.val()}/flag`)
 }
 
 function renderFlaggedMessage (res) {
