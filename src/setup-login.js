@@ -32,7 +32,7 @@ function attemptToCloseLogin () {
   if (!creds.hasCreds()) {
     return
   } else {
-    habitica.user.get().then(function () {
+    habitica.get('/user').then(function () {
       $login.transition('fade up', function () {
         $logoutBtn.transition('fade')
         renderForm()

@@ -18167,7 +18167,7 @@ var renderForm = require('./render-form')
 if (!creds.hasCreds()) {
   setupLogin()
 } else {
-  habitica.user.get().then(function () {
+  habitica.get('/user').then(function () {
     renderForm()
   }).catch(function (err) {
     $('#login').addClass('error')
@@ -18331,7 +18331,7 @@ function attemptToCloseLogin () {
   if (!creds.hasCreds()) {
     return
   } else {
-    habitica.user.get().then(function () {
+    habitica.get('/user').then(function () {
       $login.transition('fade up', function () {
         $logoutBtn.transition('fade')
         renderForm()

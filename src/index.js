@@ -10,7 +10,7 @@ var renderForm = require('./render-form')
 if (!creds.hasCreds()) {
   setupLogin()
 } else {
-  habitica.user.get().then(function () {
+  habitica.get('/user').then(function () {
     renderForm()
   }).catch(function (err) {
     $('#login').addClass('error')
