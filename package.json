@@ -14,7 +14,7 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
-    "habitica": "^3.0.0",
+    "habitica": "^4.0.0",
     "habitica-markdown": "^1.2.2",
     "uuid": "^2.0.2",
     "validator": "^5.5.0"
